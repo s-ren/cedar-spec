@@ -1286,7 +1286,7 @@ private theorem evaluate_record_wf {env : Env} {v : Value} {axs : List (Attr × 
   replace hv := Map.find?_mem_toList hv
   replace hv := Map.mem_make_mem_list hv
   replace ⟨x, hx, hvs⟩ := List.mapM'_ok_implies_all_from_ok hvs (a, v) hv
-  simp [bindAttr] at hvs
+  simp [bindAttr, -Except.map_eq_ok] at hvs
   simp_do_let (evaluate x.snd env.request env.entities) at hvs
     <;> simp [Functor.map, Except.map] at hvs
   rename_i v' hok
